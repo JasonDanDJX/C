@@ -1,4 +1,4 @@
-//遥控壁障小车，作者：邓及翔，成员：乔凯
+
 #include <reg52.h>
 #include <intrins.h>
 #include "dianji.h"
@@ -23,10 +23,10 @@ sbit	MOSI	=P2^7;
 sbit	SCK		=P2^2;
 sbit	CSN		=P2^5;
 //----------------------------------------按键端口-------------------------------------------------------
-sbit	KEY1=P3^4;
-sbit    KEY2=P3^5;
-sbit    KEY3=P3^6;
-sbit	KEY4=P3^7;
+sbit	KEY1=P3^4;//左转
+sbit    KEY2=P3^5;//右转
+sbit    KEY3=P3^6;//前进
+sbit	KEY4=P3^7;//后退
 
 
 
@@ -690,6 +690,8 @@ void main()
 			tf=0;
 			
 	   	}
+		//以上是发送过程
+		//以下是接收过程，可以分开分别加载到小车端和遥控器端，也可以直接加载相同的程序到小车和遥控器
 		leng =8; // 预计接受8 bytes
    		if(halRfReceivePacket(RxBuf,&leng))
 		{
